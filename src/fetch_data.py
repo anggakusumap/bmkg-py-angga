@@ -35,13 +35,13 @@ def fetch_weather_data(url: str, params: dict, output_path: str) -> dict | None:
         return data
 
     except requests.exceptions.ConnectionError:
-        print("Error: Gak bisa connect internet. Periksa koneksi Anda.")
+        print("Error: Connection Error. Periksa koneksi.")
     except requests.exceptions.Timeout:
-        print("Error: Request timeout. Server mungkin sedang sibuk.")
+        print("Error: Request timeout.")
     except requests.exceptions.HTTPError as e:
         print(f"HTTP Error: {e}")
     except requests.exceptions.RequestException as e:
-        print(f"Error tidak terduga: {e}")
+        print(f"Unexpected Error: {e}")
 
     return None
 
