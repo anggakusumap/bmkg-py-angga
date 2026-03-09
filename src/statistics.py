@@ -10,13 +10,13 @@ INPUT_PATH = "data/weather_clean.csv"
 
 def calculate_statistics(input_path: str) -> dict | None:
     """Loads the cleaned CSV and calculates descriptive statistics."""
-    print(f"\n📊 Loading clean data from: {input_path}")
+    print(f"\nLoading clean data dari: {input_path}")
 
     try:
         df = pd.read_csv(input_path, parse_dates=["datetime"])
     except FileNotFoundError:
-        print(f"❌ File not found: {input_path}")
-        print("   → Please run process_data.py first.")
+        print(f"File not found: {input_path}")
+        print("   → Tolong run process_data.py dulu.")
         return None
 
     temp_mean   = df["temperature_c"].mean()
@@ -37,31 +37,31 @@ def calculate_statistics(input_path: str) -> dict | None:
     condition_counts = df["weather_condition"].value_counts()
 
     print("\n" + "="*55)
-    print("  🌡️  BMKG WEATHER FORECAST — DESCRIPTIVE STATISTICS")
-    print("  📍 Panjer Village, South Denpasar, Bali")
+    print("  PRAKIRAAN CUACA BMKG")
+    print("  Desa Panjer, Denpasar Selatan, Denpasar Bali")
     print("="*55)
 
-    print("\n📌 TEMPERATURE (°C)")
-    print(f"   Mean   : {temp_mean:.1f} °C")
-    print(f"   Median : {temp_median:.1f} °C")
-    print(f"   Mode   : {temp_mode:.1f} °C")
-    print(f"   Min    : {temp_min:.1f} °C")
-    print(f"   Max    : {temp_max:.1f} °C")
-    print(f"   Std Dev: {temp_std:.2f} °C")
+    print("\nSUHU (°C)")
+    print(f"   Rata-rata : {temp_mean:.1f} °C")
+    print(f"   Median    : {temp_median:.1f} °C")
+    print(f"   Modus     : {temp_mode:.1f} °C")
+    print(f"   Min       : {temp_min:.1f} °C")
+    print(f"   Maks      : {temp_max:.1f} °C")
+    print(f"   Std Dev   : {temp_std:.2f} °C")
 
-    print("\n💧 HUMIDITY (%)")
-    print(f"   Mean   : {hum_mean:.1f} %")
-    print(f"   Median : {hum_median:.1f} %")
-    print(f"   Min    : {hum_min:.0f} %")
-    print(f"   Max    : {hum_max:.0f} %")
+    print("\nKELEMBAPAN (%)")
+    print(f"   Rata-rata : {hum_mean:.1f} %")
+    print(f"   Median    : {hum_median:.1f} %")
+    print(f"   Min       : {hum_min:.0f} %")
+    print(f"   Maks      : {hum_max:.0f} %")
 
-    print("\n💨 WIND SPEED (km/h)")
-    print(f"   Mean   : {wind_mean:.1f} km/h")
-    print(f"   Max    : {wind_max:.1f} km/h")
+    print("\nKECEPATAN ANGIN (km/jam)")
+    print(f"   Rata-rata : {wind_mean:.1f} km/jam")
+    print(f"   Maks      : {wind_max:.1f} km/jam")
 
-    print("\n🌤️  WEATHER CONDITIONS (Frequency)")
+    print("\nKONDISI CUACA (Frekuensi)")
     for condition, count in condition_counts.items():
-        print(f"   {condition:<20} : {count} time slot(s)")
+        print(f"   {condition:<20} : {count} waktu")
 
     print("="*55)
 

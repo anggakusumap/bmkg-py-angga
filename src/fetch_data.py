@@ -14,8 +14,7 @@ OUTPUT_PATH = "data/weather_raw.json"
 
 
 def fetch_weather_data(url: str, params: dict, output_path: str) -> dict | None:
-    """Fetches weather data from the API and saves it to a JSON file."""
-    print("📡 Connecting to BMKG API...")
+    print("Connecting ke API BMKG...")
 
     try:
         headers = {
@@ -25,24 +24,24 @@ def fetch_weather_data(url: str, params: dict, output_path: str) -> dict | None:
         response.raise_for_status()
         data = response.json()
 
-        print(f"✅ Data fetched successfully! Status code: {response.status_code}")
+        print(f"Data berhasil di-fetch! Status code: {response.status_code}")
 
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
 
-        print(f"💾 Raw data saved to: {output_path}")
+        print(f"Raw data saved di: {output_path}")
         return data
 
     except requests.exceptions.ConnectionError:
-        print("❌ Error: Could not connect to the internet. Check your connection.")
+        print("Error: Gak bisa connect internet. Periksa koneksi Anda.")
     except requests.exceptions.Timeout:
-        print("❌ Error: The request timed out. The server may be busy.")
+        print("Error: Request timeout. Server mungkin sedang sibuk.")
     except requests.exceptions.HTTPError as e:
-        print(f"❌ HTTP Error: {e}")
+        print(f"HTTP Error: {e}")
     except requests.exceptions.RequestException as e:
-        print(f"❌ Unexpected error: {e}")
+        print(f"Error tidak terduga: {e}")
 
     return None
 

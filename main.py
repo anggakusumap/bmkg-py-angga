@@ -27,33 +27,33 @@ CHARTS_DIR = "data/charts"
 
 def main():
     print("=" * 55)
-    print("  🌦️  BMKG WEATHER ANALYSIS — Panjer, Denpasar, Bali")
+    print("  ANALISIS CUACA BMKG — Panjer, Denpasar, Bali")
     print("=" * 55)
 
-    print("\n🔷 STEP 1: Fetching data from BMKG API...")
+    print("\nStep 1: Fetching data dari API BMKG...")
     data = fetch_weather_data(API_URL, API_PARAMS, RAW_JSON)
 
     if data is None:
-        print("\n⚠️  Could not fetch live data. Trying to use existing raw file...")
+        print("\nGagal fetch live data. Mencoba pakai file raw yang ada...")
 
-    print("\n🔷 STEP 2: Processing and cleaning data...")
+    print("\nStep 2: Processing dan membersihkan data...")
     df = process_data(RAW_JSON, CLEAN_CSV)
 
     if df is None:
-        print("\n❌ Processing failed. Please check data/weather_raw.json exists.")
+        print("\nProcessing gagal. Harap cek apakah file data/weather_raw.json ada.")
         return
 
-    print("\n🔷 STEP 3: Calculating statistics...")
+    print("\nStep 3: Menghitung statistik...")
     calculate_statistics(CLEAN_CSV)
 
-    print("\n🔷 STEP 4: Generating visualizations...")
+    print("\nStep 4: Generate visualisasi grafik...")
     generate_all_charts(CLEAN_CSV, CHARTS_DIR)
 
     print("\n" + "=" * 55)
-    print("  ✅  Analysis complete!")
-    print(f"  📁  Raw JSON  → {RAW_JSON}")
-    print(f"  📁  Clean CSV → {CLEAN_CSV}")
-    print(f"  📁  Charts    → {CHARTS_DIR}/")
+    print("  Analisis complete!")
+    print(f"  Raw JSON  → {RAW_JSON}")
+    print(f"  Clean CSV → {CLEAN_CSV}")
+    print(f"  Charts    → {CHARTS_DIR}/")
     print("=" * 55)
 
 

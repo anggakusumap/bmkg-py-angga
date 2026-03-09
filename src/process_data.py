@@ -22,10 +22,10 @@ def extract_records(raw_data: dict) -> list[dict]:
             for forecast in day_group:
                 records.append(forecast)
 
-        print(f"📦 Extracted {len(records)} forecast records.")
+        print(f"Extracted {len(records)} baris data cuaca.")
 
     except (KeyError, IndexError) as e:
-        print(f"❌ Error navigating JSON structure: {e}")
+        print(f"Error saat parsing struktur JSON: {e}")
 
     return records
 
@@ -53,25 +53,25 @@ def build_dataframe(records: list[dict]) -> pd.DataFrame:
     df["datetime"] = pd.to_datetime(df["datetime"])
     df = df.sort_values("datetime").reset_index(drop=True)
 
-    print("✅ DataFrame created successfully.")
+    print("DataFrame berhasil dibuat.")
     return df
 
 
 def process_data(input_path: str, output_path: str) -> pd.DataFrame | None:
     """Loads JSON, extracts records, builds DataFrame, and exports to CSV."""
-    print(f"\n📂 Loading raw data from: {input_path}")
+    print(f"\nLoading raw data dari: {input_path}")
 
     try:
         with open(input_path, "r", encoding="utf-8") as f:
             raw_data = json.load(f)
     except FileNotFoundError:
-        print(f"❌ File not found: {input_path}")
-        print("   → Please run fetch_data.py first.")
+        print(f"File not found: {input_path}")
+        print("   → Tolong run fetch_data.py terlebih dahulu.")
         return None
 
     records = extract_records(raw_data)
     if not records:
-        print("❌ No records found. Check the JSON structure.")
+        print("No records found. Cek struktur JSON.")
         return None
 
     df = build_dataframe(records)
@@ -86,7 +86,7 @@ def process_data(input_path: str, output_path: str) -> pd.DataFrame | None:
     print(df.describe())
 
     df.to_csv(output_path, index=False)
-    print(f"\n💾 Clean data saved to: {output_path}")
+    print(f"\nClean data saved di: {output_path}")
 
     return df
 

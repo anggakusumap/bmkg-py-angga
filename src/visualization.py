@@ -27,7 +27,7 @@ def plot_temperature_line(df: pd.DataFrame, output_dir: str) -> None:
         linewidth=2,
         color="#E74C3C",
         markersize=5,
-        label="Temperature (°C)",
+        label="Suhu (°C)",
     )
 
     ax.fill_between(df["datetime"], df["temperature_c"], alpha=0.1, color="#E74C3C")
@@ -35,16 +35,16 @@ def plot_temperature_line(df: pd.DataFrame, output_dir: str) -> None:
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%d %b\n%H:%M"))
     fig.autofmt_xdate(rotation=30)
 
-    ax.set_title("🌡️  Temperature Forecast — Panjer Village, Denpasar", fontsize=14, fontweight="bold", pad=12)
-    ax.set_xlabel("Date & Time (Local)", fontsize=11)
-    ax.set_ylabel("Temperature (°C)", fontsize=11)
+    ax.set_title("Prakiraan Suhu — Desa Panjer, Denpasar Selatan", fontsize=14, fontweight="bold", pad=12)
+    ax.set_xlabel("Tanggal & Waktu (Lokal)", fontsize=11)
+    ax.set_ylabel("Suhu (°C)", fontsize=11)
     ax.legend(fontsize=10)
     ax.set_ylim(20, 38)
 
     plt.tight_layout()
     path = os.path.join(output_dir, "01_temperature_line.png")
     plt.savefig(path)
-    print(f"  ✅ Saved: {path}")
+    print(f"  Saved: {path}")
     plt.show()
     plt.close()
 
@@ -62,17 +62,17 @@ def plot_temperature_histogram(df: pd.DataFrame, output_dir: str) -> None:
     )
 
     mean_temp = df["temperature_c"].mean()
-    ax.axvline(mean_temp, color="#E74C3C", linestyle="--", linewidth=1.5, label=f"Mean: {mean_temp:.1f} °C")
+    ax.axvline(mean_temp, color="#E74C3C", linestyle="--", linewidth=1.5, label=f"Rata-rata: {mean_temp:.1f} °C")
 
-    ax.set_title("📊 Temperature Distribution", fontsize=14, fontweight="bold", pad=12)
-    ax.set_xlabel("Temperature (°C)", fontsize=11)
-    ax.set_ylabel("Frequency (Number of Time Slots)", fontsize=11)
+    ax.set_title("Distribusi Suhu", fontsize=14, fontweight="bold", pad=12)
+    ax.set_xlabel("Suhu (°C)", fontsize=11)
+    ax.set_ylabel("Frekuensi (Jumlah Slot Waktu)", fontsize=11)
     ax.legend(fontsize=10)
 
     plt.tight_layout()
     path = os.path.join(output_dir, "02_temperature_histogram.png")
     plt.savefig(path)
-    print(f"  ✅ Saved: {path}")
+    print(f"  Saved: {path}")
     plt.show()
     plt.close()
 
@@ -98,15 +98,15 @@ def plot_temp_vs_humidity(df: pd.DataFrame, output_dir: str) -> None:
             linewidths=0.5,
         )
 
-    ax.set_title("🌡️  Temperature vs. Humidity", fontsize=14, fontweight="bold", pad=12)
-    ax.set_xlabel("Temperature (°C)", fontsize=11)
-    ax.set_ylabel("Humidity (%)", fontsize=11)
-    ax.legend(title="Weather Condition", fontsize=9, title_fontsize=10, loc="upper right")
+    ax.set_title("Suhu vs. Kelembapan", fontsize=14, fontweight="bold", pad=12)
+    ax.set_xlabel("Suhu (°C)", fontsize=11)
+    ax.set_ylabel("Kelembapan (%)", fontsize=11)
+    ax.legend(title="Kondisi Cuaca", fontsize=9, title_fontsize=10, loc="upper right")
 
     plt.tight_layout()
     path = os.path.join(output_dir, "03_temp_vs_humidity_scatter.png")
     plt.savefig(path)
-    print(f"  ✅ Saved: {path}")
+    print(f"  Saved: {path}")
     plt.show()
     plt.close()
 
@@ -134,39 +134,39 @@ def plot_weather_condition_bar(df: pd.DataFrame, output_dir: str) -> None:
             ha="center", va="bottom", fontsize=11, fontweight="bold"
         )
 
-    ax.set_title("🌤️  Weather Condition Frequency", fontsize=14, fontweight="bold", pad=12)
-    ax.set_xlabel("Weather Condition", fontsize=11)
-    ax.set_ylabel("Number of 3-Hour Time Slots", fontsize=11)
+    ax.set_title("Frekuensi Kondisi Cuaca", fontsize=14, fontweight="bold", pad=12)
+    ax.set_xlabel("Kondisi Cuaca", fontsize=11)
+    ax.set_ylabel("Jumlah Slot Waktu 3-Jam", fontsize=11)
     ax.set_ylim(0, condition_counts.max() + 2)
 
     plt.tight_layout()
     path = os.path.join(output_dir, "04_weather_condition_bar.png")
     plt.savefig(path)
-    print(f"  ✅ Saved: {path}")
+    print(f"  Saved: {path}")
     plt.show()
     plt.close()
 
 
 def generate_all_charts(input_path: str, output_dir: str) -> None:
     """Loads the cleaned CSV and generates all four visualizations."""
-    print(f"\n🎨 Loading data from: {input_path}")
+    print(f"\nLoading data dari: {input_path}")
 
     try:
         df = pd.read_csv(input_path, parse_dates=["datetime"])
     except FileNotFoundError:
-        print(f"❌ File not found: {input_path}")
-        print("   → Please run process_data.py first.")
+        print(f"File not found: {input_path}")
+        print("   → Tolong run process_data.py dulu.")
         return
 
     os.makedirs(output_dir, exist_ok=True)
 
-    print("\n📈 Generating charts...")
+    print("\nGenerating charts...")
     plot_temperature_line(df, output_dir)
     plot_temperature_histogram(df, output_dir)
     plot_temp_vs_humidity(df, output_dir)
     plot_weather_condition_bar(df, output_dir)
 
-    print(f"\n🎉 All charts saved to: {output_dir}/")
+    print(f"\nSemua charts saved ke: {output_dir}/")
 
 
 if __name__ == "__main__":
