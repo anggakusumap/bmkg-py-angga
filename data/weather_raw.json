@@ -31,27 +31,6 @@
       "cuaca": [
         [
           {
-            "datetime": "2026-03-30T09:00:00Z",
-            "t": 30,
-            "tcc": 86,
-            "tp": 0.1,
-            "weather": 2,
-            "weather_desc": "Cerah Berawan",
-            "weather_desc_en": "Partly Cloudy",
-            "wd_deg": 125,
-            "wd": "E",
-            "wd_to": "W",
-            "ws": 13.9,
-            "hu": 78,
-            "vs": 19690,
-            "vs_text": "> 10 km",
-            "time_index": "8-9",
-            "analysis_date": "2026-03-30T00:00:00",
-            "image": "https://api-apps.bmkg.go.id/storage/icon/cuaca/cerah berawan-am.svg",
-            "utc_datetime": "2026-03-30 09:00:00",
-            "local_datetime": "2026-03-30 17:00:00"
-          },
-          {
             "datetime": "2026-03-30T12:00:00Z",
             "t": 28,
             "tcc": 88,

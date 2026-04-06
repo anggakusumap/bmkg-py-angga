@@ -1,5 +1,4 @@
 datetime,temperature_c,humidity_pct,weather_condition,wind_speed_kmh,wind_direction,visibility,cloud_cover_pct,rainfall_mm
-2026-03-30 17:00:00,30,78,Partly Cloudy,13.9,E,> 10 km,86,0.1
 2026-03-30 20:00:00,28,83,Partly Cloudy,12.6,E,> 10 km,88,0.1
 2026-03-30 23:00:00,27,88,Partly Cloudy,6.4,NE,> 10 km,81,0.0
 2026-03-31 02:00:00,26,91,Partly Cloudy,3.2,N,> 10 km,84,0.0
